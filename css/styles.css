@@ -305,6 +305,19 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .form__note { font-size: .88rem; line-height: 1.5; color: var(--bark-2); }
 
 /* --------------------------------------------------------------------------
+   Location: a colour block beside the map
+   -------------------------------------------------------------------------- */
+.find { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); color: #fff; background: var(--olive-ink); }
+.find__info { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: clamp(52px, 6vw, 88px) var(--gutter); }
+.find__title { font-family: var(--font-display); font-weight: 400; text-transform: uppercase; font-size: clamp(2.2rem, 4vw, 3.8rem); line-height: .98; letter-spacing: .01em; color: #fff; text-wrap: balance; }
+.find__addr { margin-block: 14px 26px; font-style: normal; font-size: clamp(1.1rem, 1.4vw, 1.28rem); line-height: 1.5; color: rgba(255,255,255,.94); }
+.find__map { display: block; width: 100%; height: 100%; min-height: clamp(320px, 34vw, 480px); border: 0; }
+@media (max-width: 899px) {
+  .find { grid-template-columns: 1fr; }
+  .find__map { min-height: 320px; }
+}
+
+/* --------------------------------------------------------------------------
    Footer
    -------------------------------------------------------------------------- */
 .footer { position: relative; overflow: hidden; background: var(--black); color: var(--cream); }
