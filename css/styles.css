@@ -15,8 +15,9 @@
   --brown:       #7B4B22;
   --olive:       #5F7F2F;
   --olive-deep:  #3F5A1E;
-  --olive-ink:   #2B3F15;   /* hero block: dark enough for the olive button to read on it */
   --green-soft:  #E6EDD6;
+  --sky:         #63CDF6;
+  --sky-soft:    #DDF3FC;
   --bark:        #2E1C10;
   --bark-2:      #64503F;
   --muted:       #98846F;
@@ -33,6 +34,11 @@
   --nav-h: 84px;
   --radius: 8px;
   --ease-out: cubic-bezier(.22,.61,.36,1);
+
+  /* The height of the giraffe box, measured from the photo. The rail, tongue and title all
+     hang off this, so changing it keeps them lined up. */
+  --g: min(70svh, 50vw);
+  --rail-h: calc(var(--g) * .06545);
 
   --print: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cg fill='%23D6BB86' stroke='%23D6BB86' stroke-width='12' stroke-linejoin='round'%3E%3Cpolygon points='14,20 58,10 82,42 60,78 24,70 8,44'/%3E%3Cpolygon points='102,12 150,6 172,36 158,72 112,66 94,40'/%3E%3Cpolygon points='192,16 232,24 234,64 208,84 186,58'/%3E%3Cpolygon points='22,98 66,94 84,128 62,166 26,158 8,128'/%3E%3Cpolygon points='106,88 148,92 168,124 150,162 110,158 92,124'/%3E%3Cpolygon points='192,102 232,106 234,150 210,174 186,148'/%3E%3Cpolygon points='12,186 54,180 76,210 58,234 18,230 4,208'/%3E%3Cpolygon points='102,186 150,180 172,206 154,234 106,232 90,210'/%3E%3Cpolygon points='196,192 232,196 234,232 198,232 186,216'/%3E%3C/g%3E%3C/svg%3E");
 }
@@ -140,64 +146,169 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .nav.is-scrolled .nav__logo { width: 66px; margin-top: 6px; padding: 3px; box-shadow: none; }
 
 /* --------------------------------------------------------------------------
-   Hero
+   Hero: sky, fence rail and ground, with the giraffe leaning over the rail
    -------------------------------------------------------------------------- */
 .hero {
   position: relative;
+  z-index: 2;   /* the tongue hangs over the next section */
   min-height: 100vh;
   min-height: 100svh;
-  display: flex; align-items: center;
-  padding-top: 166px; /* clears the hanging logo badge, which ends at 144px */
-  padding-bottom: 48px;
-  color: #fff;
-  background: var(--olive-ink);
-  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) 0 auto auto;
+  color: var(--bark);
+  background: var(--sky);
   isolation: isolate;
 }
-/* A clean colour-block split: the words on solid olive, the photo untouched beside
-   them. The crop leans right, where the giraffe's head is. */
-.hero__media {
-  position: absolute; top: 0; right: 0; bottom: 0; z-index: -1;
-  width: 46%;
-  overflow: hidden;
+/* Giraffe print across the sky, in white */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: #fff;
+  opacity: .1;
+  -webkit-mask: var(--print) 0 0 / 250px;
+  mask: var(--print) 0 0 / 250px;
 }
-.hero__img { width: 100%; height: 100%; object-fit: cover; object-position: 92% 50%; }
-.hero__inner { position: relative; width: min(100% - 2 * var(--gutter), var(--container)); margin-inline: auto; }
+.hero__words {
+  position: relative;
+  z-index: 1;
+  align-self: end;
+  width: min(100% - 2 * var(--gutter), var(--container));
+  margin-inline: auto;
+  padding-top: 152px;   /* clears the hanging logo badge, which ends at 144px */
+  padding-bottom: clamp(18px, 3.4svh, 40px);
+}
 /* Typed in capitals, not transformed, so "1on1" keeps its lower case */
 .hero__kicker {
   display: inline-block;
   max-width: 100%;
-  margin-bottom: 24px;
+  margin-bottom: 14px;
   padding: 8px 16px;
   border-radius: var(--radius);
-  background: var(--accent);
+  background: #fff;
   color: var(--bark);
   font-weight: 800; font-size: .8rem; letter-spacing: .2em;
 }
+/* Sized to the room beside the giraffe: the sticker line is about 8.3em wide */
 .hero__title {
   font-family: var(--font-display);
   font-weight: 400;
   text-transform: uppercase;
   line-height: .94;
   letter-spacing: .01em;
-  font-size: clamp(3rem, 5vw, 6rem);
-  margin-bottom: 20px;
+  font-size: min(12.6svh, (100vw - var(--g) * .759 - 120px) / 8.3);
 }
-.hero__line { display: block; overflow: hidden; }
+.hero__line { display: block; overflow: hidden; padding-top: .03em; }
 .hero__line-in { display: block; }
-.hero__title em { font-style: normal; color: var(--accent); }
+/* The last line is a sticker. Its line is padded so the tilt is not clipped. */
+.hero__line:last-child { padding-block: .16em .18em; margin-block: -.06em -.18em; }
+.hero__title em {
+  display: inline-block;
+  padding: .05em .2em .02em;
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: var(--bark);
+  font-style: normal;
+  rotate: -1.6deg;
+}
+
+/* The giraffe is layered so it really leans over the fence: head and chest behind the
+   rail, muzzle and tongue in front. Both .giraffe boxes sit in the same place. */
+.hero__stage { display: none; }
+.hero__fence { position: relative; grid-row: 3; height: var(--rail-h); }
+.hero__rail {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: url("../assets/img/rail.jpg") left center / auto 100% repeat-x;
+  box-shadow: 0 7px 0 -1px rgba(46,28,16,.2);
+}
+.giraffe {
+  position: absolute;
+  right: max(var(--gutter), 3.4vw);
+  bottom: calc(var(--g) * -.05236);
+  height: var(--g);
+  aspect-ratio: 1450 / 1910;
+  pointer-events: none;
+  will-change: transform;
+}
+.giraffe--back { z-index: 2; }
+.giraffe--front { z-index: 4; }
+.giraffe__in { position: relative; width: 100%; height: 100%; }
+.giraffe__in img:not(.giraffe__tongue) { position: absolute; inset: 0; width: 100%; height: 100%; }
+/* The big layer is a JPEG cut out by a mask, about a fifth of the size of a PNG */
+.giraffe--back img {
+  -webkit-mask: url("../assets/img/giraffe-back-mask.png") center / 100% 100% no-repeat;
+  mask: url("../assets/img/giraffe-back-mask.png") center / 100% 100% no-repeat;
+}
+.giraffe__tongue {
+  position: absolute;
+  left: 7.586%;
+  top: 91.1%;
+  width: 22.76%;
+  max-width: none;
+  height: auto;
+  transform-origin: 50% 5%;
+}
+
+.hero__ground {
+  grid-row: 4;
+  display: flex;
+  align-items: center;
+  min-height: calc(var(--g) * .37);
+  background: var(--accent);
+}
+.hero__action {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px clamp(24px, 3vw, 48px);
+  width: calc(100% - var(--g) * .139 - 2 * var(--gutter));
+  max-width: 58vw;
+  margin-left: max(var(--gutter), (100% - var(--container)) / 2);
+  padding-block: 22px;
+}
 .hero__sub {
-  max-width: 42ch;
-  margin-bottom: 30px;
+  flex: 1 1 340px;
+  max-width: 46ch;
   font-size: clamp(1.05rem, 1.3vw, 1.22rem);
+  font-weight: 700;
   line-height: 1.6;
-  color: rgba(255,255,255,.94);
+}
+
+/* Tablets, phones and tall windows: the words, then the giraffe, then the ground. The
+   giraffe is mirrored so the tongue hangs at the right, clear of the words. */
+@media (max-width: 899px), (max-aspect-ratio: 5/4) {
+  :root { --g: min(42svh, 84vw); }
+  .hero { grid-template-rows: auto minmax(calc(var(--g) * .9), 1fr) auto auto; }
+  .hero__words { align-self: start; padding-top: 94px; padding-bottom: 0; }
+  .hero__title { font-size: clamp(2.3rem, 12.4vw, 5.6rem); }
+  .hero__title em { font-size: .82em; white-space: nowrap; }
+  .hero__stage { display: block; grid-row: 2; }
+  .giraffe { right: 0; }
+  .giraffe__in { transform: scaleX(-1); }
+  .hero__ground { align-items: flex-start; min-height: calc(var(--g) * .44); }
+  .hero__action {
+    display: block;
+    width: auto;
+    max-width: none;
+    margin-inline: var(--gutter);
+    padding-block: 20px 26px;
+  }
+  /* Keeps the words clear of the tongue */
+  .hero__sub { width: calc(100% - var(--g) * .23); margin-bottom: 18px; }
+}
+@media (min-width: 900px) and (max-aspect-ratio: 5/4) {
+  :root { --g: min(50svh, 70vw); }
+  .giraffe { right: var(--gutter); }
 }
 
 /* --------------------------------------------------------------------------
    Packages and durations
    -------------------------------------------------------------------------- */
-.packages { background: var(--cream-2); }
+.packages { background: var(--sky-soft); }
 .packages__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 80px); align-items: start; }
 .note { margin-top: clamp(24px, 3vw, 36px); padding: 26px 28px; border-radius: var(--radius); background: var(--olive-deep); }
 .note h3 {
@@ -217,14 +328,14 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .durations__time { flex: none; font-weight: 800; color: var(--olive); }
 
 /* --------------------------------------------------------------------------
-   Purpose band: deep olive colour block with the giraffe print
+   Purpose band: a neon colour block with the giraffe print
    -------------------------------------------------------------------------- */
-.purpose { position: relative; padding-block: clamp(60px, 7vw, 96px); background: var(--olive-deep); color: #fff; overflow: hidden; isolation: isolate; }
-.purpose::before { content: ''; position: absolute; inset: 0; z-index: -1; background-image: var(--print); background-size: 150px; opacity: .1; }
+.purpose { position: relative; padding-block: clamp(60px, 7vw, 96px); background: var(--accent); color: var(--bark); overflow: hidden; isolation: isolate; }
+.purpose::before { content: ''; position: absolute; inset: 0; z-index: -1; background-image: var(--print); background-size: 150px; opacity: .13; filter: brightness(0) invert(1); }
 .purpose__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 5vw, 80px); align-items: start; }
-.purpose .h-xl { color: #fff; }
-.purpose .h-xl em { font-style: normal; color: var(--accent); }
-.purpose .lead { color: rgba(255,255,255,.92); }
+.purpose .h-xl { color: var(--bark); }
+.purpose .h-xl em { font-style: normal; }
+.purpose .lead { color: var(--bark); font-weight: 700; }
 
 /* --------------------------------------------------------------------------
    Enquiry
@@ -307,10 +418,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 /* --------------------------------------------------------------------------
    Location: a colour block beside the map
    -------------------------------------------------------------------------- */
-.find { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); color: #fff; background: var(--olive-ink); }
+.find { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); color: var(--bark); background: var(--sky); }
 .find__info { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: clamp(52px, 6vw, 88px) var(--gutter); }
-.find__title { font-family: var(--font-display); font-weight: 400; text-transform: uppercase; font-size: clamp(2.2rem, 4vw, 3.8rem); line-height: .98; letter-spacing: .01em; color: #fff; text-wrap: balance; }
-.find__addr { margin-block: 14px 26px; font-style: normal; font-size: clamp(1.1rem, 1.4vw, 1.28rem); line-height: 1.5; color: rgba(255,255,255,.94); }
+.find__title { font-family: var(--font-display); font-weight: 400; text-transform: uppercase; font-size: clamp(2.2rem, 4vw, 3.8rem); line-height: .98; letter-spacing: .01em; color: var(--bark); text-wrap: balance; }
+.find__addr { margin-block: 14px 26px; font-style: normal; font-size: clamp(1.1rem, 1.4vw, 1.28rem); line-height: 1.5; font-weight: 700; color: var(--bark); }
 .find__map { display: block; width: 100%; height: 100%; min-height: clamp(320px, 34vw, 480px); border: 0; }
 @media (max-width: 899px) {
   .find { grid-template-columns: 1fr; }
@@ -351,22 +462,11 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .packages__grid, .purpose__grid, .enquire__grid { grid-template-columns: 1fr; }
   .purpose__grid { gap: 18px; }
 }
-/* Phones, tablets and tall windows: the photo on top with the face clear, the words on
-   an olive block. Together they fill the screen, and the photo takes whatever is left. */
-@media (max-width: 899px), (max-aspect-ratio: 5/4) {
-  .hero { flex-direction: column; align-items: stretch; padding: 0; }
-  .hero__media { position: relative; inset: auto; z-index: auto; flex: 1 1 auto; width: auto; min-height: 300px; }
-  .hero__img { position: absolute; inset: 0; object-position: 100% 50%; }
-  .hero__inner { flex: none; padding-block: 26px 34px; }
-}
-@media (max-width: 680px) {
-}
 @media (max-width: 600px) {
   body { font-size: 1rem; }
   .section { padding-block: 54px; }
-  .hero__kicker { font-size: .75rem; letter-spacing: .1em; padding: 7px 12px; margin-bottom: 18px; }
-  .hero__title { font-size: clamp(2.7rem, 12.6vw, 4rem); }
-  .hero__sub { font-size: 1rem; margin-bottom: 24px; }
+  .hero__kicker { margin-bottom: 12px; padding: 7px 12px; font-size: min(.75rem, 3.1vw); letter-spacing: .06em; white-space: nowrap; }
+  .hero__sub { font-size: 1rem; }
   .hero .btn { width: 100%; }
   .form__row { grid-template-columns: 1fr; }
   .form__row--pair { grid-template-columns: repeat(2, minmax(0, 1fr)); }

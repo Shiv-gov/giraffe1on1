@@ -189,19 +189,44 @@
   gsap.defaults({ ease: 'power3.out', duration: 1 });
   ScrollTrigger.config({ ignoreMobileResize: true });
 
-  /* Hero load */
+  /* Hero load: the words rise, the giraffe pops up over the fence, the tongue flops out
+     and keeps swaying */
+  const giraffe = $$('.giraffe');
+  const tongue = $('.giraffe__tongue');
+  const heroWords = $('.hero__words');
+
+  const swayTongue = () => gsap.fromTo(tongue, { rotation: -2.4 }, {
+    rotation: 2.4, duration: 1.5, ease: 'sine.inOut', yoyo: true, repeat: -1
+  });
+
+  /* A mouse only: the giraffe leans towards the pointer and the words drift the other way */
+  const followPointer = () => {
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    gsap.set(giraffe, { transformOrigin: '50% 92%' });
+    const moveX = giraffe.map(el => gsap.quickTo(el, 'x', { duration: .9, ease: 'power3' }));
+    const moveY = giraffe.map(el => gsap.quickTo(el, 'y', { duration: .9, ease: 'power3' }));
+    const lean = giraffe.map(el => gsap.quickTo(el, 'rotation', { duration: 1.1, ease: 'power3' }));
+    const drift = gsap.quickTo(heroWords, 'x', { duration: 1.1, ease: 'power3' });
+    window.addEventListener('pointermove', (e) => {
+      if (window.scrollY > window.innerHeight) return;
+      const px = e.clientX / window.innerWidth - .5;
+      const py = e.clientY / window.innerHeight - .5;
+      moveX.forEach(f => f(px * 22));
+      moveY.forEach(f => f(py * 10));
+      lean.forEach(f => f(px * 2.2));
+      drift(px * -10);
+    }, { passive: true });
+  };
+
   $$('.hero__line').forEach(l => { l.innerHTML = `<span class="hero__line-in">${l.innerHTML}</span>`; });
-  gsap.timeline()
-    .fromTo('.hero__img', { scale: 1.1 }, { scale: 1, duration: 2.4, ease: 'power2.out' }, 0)
+  gsap.timeline({ onComplete: followPointer })
     .from('.hero__kicker', { y: 18, opacity: 0, duration: .8 }, .3)
     .from('.hero__line-in', { yPercent: 110, duration: 1.1, stagger: .12, ease: 'power4.out' }, .4)
     .from('.hero__sub', { y: 18, opacity: 0, duration: .8 }, .8)
-    .from('.hero .btn', { y: 18, opacity: 0, duration: .7 }, .95);
-
-  gsap.to('.hero__img', {
-    yPercent: 10, ease: 'none',
-    scrollTrigger: { trigger: '#top', start: 'top top', end: 'bottom top', scrub: true }
-  });
+    .from('.hero .btn', { y: 18, opacity: 0, duration: .7 }, .95)
+    .from(giraffe, { y: () => window.innerHeight * .55, duration: 1.05, ease: 'back.out(1.5)' }, .25)
+    .from(tongue, { scaleY: 0, duration: .9, ease: 'elastic.out(1, .45)' }, 1.05)
+    .add(swayTongue, 1.7);
 
   /* Scroll reveals */
   $$('[data-reveal]').forEach(el => {

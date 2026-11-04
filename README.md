@@ -25,6 +25,17 @@ The nav is the logo and one button, nothing else. `assets/img/logo-1on1.jpg` is 
 trimmed logo; `logo-1on1-original.jpg` is the copy as supplied. A vector or transparent
 PNG from the client would look sharper.
 
+## Hero
+
+The giraffe is built from one photo (`Site Images/DSC07753.JPG`), levelled so the rail is
+straight and cut into layers: `giraffe-back` sits behind the rail, `giraffe-front` and
+`giraffe-tongue` sit in front of it, and `rail.jpg` tiles across the page. `giraffe-back` is a
+JPEG cut out by `giraffe-back-mask.png` to keep it small. Do not export these as AVIF from
+macOS: larger images lose their transparency in the browser. The tongue tip is rounded by hand because the photo crops it. Every
+size comes from `--g` in `css/styles.css`, so change that one value to resize the giraffe.
+
+The earlier dark olive hero is in the Git history at commit `205be09`.
+
 ## Experiences layouts
 
 The live section is the expanding panels (a carousel with arrow buttons below 900px).

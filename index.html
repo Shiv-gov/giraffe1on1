@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Nunito:wght@400;600;700;800;900&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=18">
+  <link rel="stylesheet" href="css/styles.css?v=19">
 </head>
 <body>
 
@@ -32,18 +32,39 @@
          HERO / WELCOME
          ============================================================ -->
     <section class="hero" id="top">
-      <div class="hero__media">
-        <img src="assets/img/hero-giraffe.jpg" alt="A giraffe ambassador leaning down over the fence to take food from a visitor’s hand" class="hero__img" width="2000" height="1333" fetchpriority="high">
-      </div>
-      <div class="hero__inner">
+      <div class="hero__words">
         <p class="hero__kicker">GIRAFFE 1on1 SA • WILDLIFE EXPERIENCES</p>
         <h1 class="hero__title">
           <span class="hero__line">Up close.</span>
           <span class="hero__line">Unforgettable.</span>
           <span class="hero__line"><em>Uniquely Giraffic!</em></span>
         </h1>
-        <p class="hero__sub">Discover the magic of meaningful wildlife encounters at Giraffe House. Meet our incredible animal ambassadors, learn their stories and create memories to treasure.</p>
-        <a href="#experiences" class="btn btn--primary btn--lg">Explore our experiences</a>
+      </div>
+
+      <div class="hero__stage"></div>
+
+      <!-- Layered so the giraffe really leans over the fence: head and chest behind the rail,
+           muzzle and tongue in front of it. Both .giraffe boxes sit in the same place. -->
+      <div class="hero__fence">
+        <div class="giraffe giraffe--back">
+          <div class="giraffe__in">
+            <img src="assets/img/giraffe-back.jpg" alt="A giraffe leaning over the fence with its long tongue hanging out" width="957" height="1261" fetchpriority="high">
+          </div>
+        </div>
+        <div class="hero__rail" aria-hidden="true"></div>
+        <div class="giraffe giraffe--front" aria-hidden="true">
+          <div class="giraffe__in">
+            <img class="giraffe__tongue" src="assets/img/giraffe-tongue.png" alt="" width="218" height="594">
+            <img src="assets/img/giraffe-front.png" alt="" width="957" height="1261">
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__ground">
+        <div class="hero__action">
+          <p class="hero__sub">Discover the magic of meaningful wildlife encounters at Giraffe House. Meet our incredible animal ambassadors, learn their stories and create memories to treasure.</p>
+          <a href="#experiences" class="btn btn--primary btn--lg">Explore our experiences</a>
+        </div>
       </div>
     </section>
 
@@ -259,6 +280,6 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
-  <script src="js/main.js?v=7"></script>
+  <script src="js/main.js?v=8"></script>
 </body>
 </html>
