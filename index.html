@@ -13,7 +13,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Nunito:wght@400;600;700;800;900&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=19">
+  <!-- Monochrome animal icons (Noto Emoji, OFL), only these few glyphs are downloaded -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Emoji:wght@600&amp;text=%F0%9F%A6%92%F0%9F%90%AA%F0%9F%A6%89%F0%9F%A6%8E%F0%9F%93%85%F0%9F%91%A5%F0%9F%8C%A6&amp;display=block" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css?v=23">
 </head>
 <body>
 
@@ -33,7 +35,7 @@
          ============================================================ -->
     <section class="hero" id="top">
       <div class="hero__words">
-        <p class="hero__kicker">GIRAFFE 1on1 SA • WILDLIFE EXPERIENCES</p>
+        <p class="hero__kicker">GIRAFFE 1on1 SA<span class="hero__kicker-bar" aria-hidden="true"></span>WILDLIFE EXPERIENCES</p>
         <h1 class="hero__title">
           <span class="hero__line">Up close.</span>
           <span class="hero__line">Unforgettable.</span>
@@ -77,15 +79,14 @@
          The earlier card layout is kept in _saved/option-a-cards. -->
     <section class="trail" id="experiences">
       <div class="container shead">
-        <h2 class="h-xl" data-reveal-lines>Choose your wildlife adventure</h2>
+        <h2 class="h-xl swoosh" data-reveal-lines>Choose your wildlife adventure</h2>
       </div>
 
       <div class="trail__panels" data-reveal-group>
         <article class="panel is-open">
           <img class="panel__img" src="assets/img/giraffe-feeding.jpg" alt="A giraffe reaching over the fence with its long tongue to take a carrot from a visitor’s hand" width="1400" height="1050" loading="lazy">
           <button type="button" class="panel__tab" aria-expanded="true" aria-controls="panel-giraffe">
-            <span class="panel__plus" aria-hidden="true"></span>
-            <span class="panel__label">Giraffe Experiences</span>
+            <span class="panel__label"><span class="ico" aria-hidden="true">🦒</span><span>Giraffe</span> <span>Experiences</span></span>
           </button>
           <div class="panel__body" id="panel-giraffe">
             <h3>Giraffe Experiences</h3>
@@ -97,8 +98,7 @@
           <!-- [PHOTO NEEDED] Replace this .panel__slot with <img class="panel__img">. -->
           <p class="panel__slot">Camel photo to come</p>
           <button type="button" class="panel__tab" aria-expanded="false" aria-controls="panel-camel">
-            <span class="panel__plus" aria-hidden="true"></span>
-            <span class="panel__label">Camel Experiences</span>
+            <span class="panel__label"><span class="ico" aria-hidden="true">🐪</span><span>Camel</span> <span>Experiences</span></span>
           </button>
           <div class="panel__body" id="panel-camel">
             <h3>Camel Experiences</h3>
@@ -109,8 +109,7 @@
         <article class="panel">
           <img class="panel__img" style="object-position:74% 50%" src="assets/img/owl-on-glove.jpg" alt="An owl perched on a visitor’s gloved hand" width="1400" height="933" loading="lazy">
           <button type="button" class="panel__tab" aria-expanded="false" aria-controls="panel-owl">
-            <span class="panel__plus" aria-hidden="true"></span>
-            <span class="panel__label">Owl Experiences</span>
+            <span class="panel__label"><span class="ico" aria-hidden="true">🦉</span><span>Owl</span> <span>Experiences</span></span>
           </button>
           <div class="panel__body" id="panel-owl">
             <h3>Owl Experiences</h3>
@@ -121,8 +120,7 @@
         <article class="panel">
           <img class="panel__img" src="assets/img/reptile-bearded-dragon.jpg" alt="A bearded dragon resting on a visitor’s hands" width="1400" height="933" loading="lazy">
           <button type="button" class="panel__tab" aria-expanded="false" aria-controls="panel-reptile">
-            <span class="panel__plus" aria-hidden="true"></span>
-            <span class="panel__label">Reptile Experiences</span>
+            <span class="panel__label"><span class="ico" aria-hidden="true">🦎</span><span>Reptile</span> <span>Experiences</span></span>
           </button>
           <div class="panel__body" id="panel-reptile">
             <h3>Reptile Experiences</h3>
@@ -149,20 +147,20 @@
     <section class="section packages" id="packages">
       <div class="container packages__grid">
         <div>
-          <h2 class="h-xl" data-reveal-lines>Experience packages &amp; durations</h2>
+          <h2 class="h-xl swoosh" data-reveal-lines>Experience packages &amp; durations</h2>
           <div class="note" data-reveal>
             <h3>Important</h3>
             <p>All advertised session durations include the welcome, introduction and guided activities. Each giraffe experience includes approximately 15 minutes of direct time with the giraffes; the full package duration is not giraffe interaction time.</p>
           </div>
         </div>
         <ul class="durations" data-reveal>
-          <li><span class="durations__name">Mini Giraffe Experience</span><span class="durations__time">30 minutes</span></li>
-          <li><span class="durations__name">2 Giraffe Experience</span><span class="durations__time">45 minutes</span></li>
-          <li><span class="durations__name">2 Giraffe &amp; Owl Experience</span><span class="durations__time">1 hour</span></li>
-          <li><span class="durations__name">2 Giraffe, Owl &amp; Reptile Experience</span><span class="durations__time">1 hour 15 minutes</span></li>
-          <li><span class="durations__name">Camel Mini Sessions</span><span class="durations__time">30 minutes</span></li>
-          <li><span class="durations__name">Owl Experience</span><span class="durations__time">15 minutes</span></li>
-          <li><span class="durations__name">Reptile Experience</span><span class="durations__time">15 minutes</span></li>
+          <li><span class="ico" aria-hidden="true">🦒</span><span class="durations__name">Mini Giraffe Experience</span><span class="durations__time">30 minutes</span></li>
+          <li><span class="ico" aria-hidden="true">🦒</span><span class="durations__name">2 Giraffe Experience</span><span class="durations__time">45 minutes</span></li>
+          <li><span class="ico" aria-hidden="true">🦒🦉</span><span class="durations__name">2 Giraffe &amp; Owl Experience</span><span class="durations__time">1 hour</span></li>
+          <li><span class="ico" aria-hidden="true">🦒🦉🦎</span><span class="durations__name">2 Giraffe, Owl &amp; Reptile Experience</span><span class="durations__time">1 hour 15 minutes</span></li>
+          <li><span class="ico" aria-hidden="true">🐪</span><span class="durations__name">Camel Mini Sessions</span><span class="durations__time">30 minutes</span></li>
+          <li><span class="ico" aria-hidden="true">🦉</span><span class="durations__name">Owl Experience</span><span class="durations__time">15 minutes</span></li>
+          <li><span class="ico" aria-hidden="true">🦎</span><span class="durations__name">Reptile Experience</span><span class="durations__time">15 minutes</span></li>
         </ul>
       </div>
     </section>
@@ -184,7 +182,7 @@
     <section class="section enquire" id="enquire">
       <div class="container enquire__grid">
         <div class="enquire__intro">
-          <h2 class="h-xl" data-reveal-lines>Ready for a Giraffic encounter?</h2>
+          <h2 class="h-xl swoosh" data-reveal-lines>Ready for a Giraffic encounter?</h2>
           <p class="lead" data-reveal>Select your preferred package and send us your date and guest details. Our team will respond with availability, package information and pricing.</p>
           <div class="enquire__photo" data-reveal>
             <img src="assets/img/giraffe-tongue.jpg" alt="A giraffe leaning over the fence with its tongue out" width="1500" height="1000" loading="lazy">
@@ -197,13 +195,13 @@
             <fieldset class="field field--group" data-required-group>
               <legend>Choose a package</legend>
               <div class="pkgs">
-                <label class="pkg"><input type="radio" name="package" value="Mini Giraffe (30 min)" data-key="mini-giraffe"><span>Mini Giraffe <small>30 min</small></span></label>
-                <label class="pkg"><input type="radio" name="package" value="2 Giraffe (45 min)" data-key="two-giraffe"><span>2 Giraffe <small>45 min</small></span></label>
-                <label class="pkg"><input type="radio" name="package" value="2 Giraffe &amp; Owl (1 hr)" data-key="two-giraffe-owl"><span>2 Giraffe &amp; Owl <small>1 hr</small></span></label>
-                <label class="pkg"><input type="radio" name="package" value="2 Giraffe, Owl &amp; Reptile (1 hr 15 min)" data-key="two-giraffe-owl-reptile"><span>2 Giraffe, Owl &amp; Reptile <small>1 hr 15 min</small></span></label>
-                <label class="pkg"><input type="radio" name="package" value="Camel Mini Session (30 min)" data-key="camel-mini"><span>Camel Mini Session <small>30 min</small></span></label>
-                <label class="pkg"><input type="radio" name="package" value="Owl (15 min)" data-key="owl"><span>Owl <small>15 min</small></span></label>
-                <label class="pkg"><input type="radio" name="package" value="Reptile (15 min)" data-key="reptile"><span>Reptile <small>15 min</small></span></label>
+                <label class="pkg"><input type="radio" name="package" value="Mini Giraffe (30 min)" data-key="mini-giraffe"><span><span class="ico" aria-hidden="true">🦒</span><span class="pkg__text">Mini Giraffe <small>30 min</small></span></span></label>
+                <label class="pkg"><input type="radio" name="package" value="2 Giraffe (45 min)" data-key="two-giraffe"><span><span class="ico" aria-hidden="true">🦒</span><span class="pkg__text">2 Giraffe <small>45 min</small></span></span></label>
+                <label class="pkg"><input type="radio" name="package" value="2 Giraffe &amp; Owl (1 hr)" data-key="two-giraffe-owl"><span><span class="ico" aria-hidden="true">🦒🦉</span><span class="pkg__text">2 Giraffe &amp; Owl <small>1 hr</small></span></span></label>
+                <label class="pkg"><input type="radio" name="package" value="2 Giraffe, Owl &amp; Reptile (1 hr 15 min)" data-key="two-giraffe-owl-reptile"><span><span class="ico" aria-hidden="true">🦒🦉🦎</span><span class="pkg__text">2 Giraffe, Owl &amp; Reptile <small>1 hr 15 min</small></span></span></label>
+                <label class="pkg"><input type="radio" name="package" value="Camel Mini Session (30 min)" data-key="camel-mini"><span><span class="ico" aria-hidden="true">🐪</span><span class="pkg__text">Camel Mini Session <small>30 min</small></span></span></label>
+                <label class="pkg"><input type="radio" name="package" value="Owl (15 min)" data-key="owl"><span><span class="ico" aria-hidden="true">🦉</span><span class="pkg__text">Owl <small>15 min</small></span></span></label>
+                <label class="pkg"><input type="radio" name="package" value="Reptile (15 min)" data-key="reptile"><span><span class="ico" aria-hidden="true">🦎</span><span class="pkg__text">Reptile <small>15 min</small></span></span></label>
               </div>
               <span class="field__error"></span>
             </fieldset>
@@ -259,12 +257,21 @@
          LOCATION: same address, map and directions link as the main site
          ============================================================ -->
     <section class="find" id="find" aria-labelledby="findTitle">
-      <div class="find__info">
-        <h2 class="find__title" id="findTitle">On the corner of the R304 and the R101</h2>
-        <address class="find__addr">c/o R304 &amp; R101, Muldersvlei<br>Stellenbosch, 7600</address>
-        <a href="https://www.google.com/maps/dir/?api=1&amp;destination=-33.8292,18.79918" target="_blank" rel="noopener" class="btn btn--primary">Get directions</a>
+      <div class="container find__grid">
+        <div class="find__info" data-reveal>
+          <h2 class="find__title swoosh" id="findTitle">On the corner of the R304 and the R101</h2>
+          <address class="find__addr">c/o R304 &amp; R101, Muldersvlei<br>Stellenbosch, 7600<br><a href="mailto:giraffe1on1@gmail.com">giraffe1on1@gmail.com</a></address>
+          <a href="https://www.google.com/maps/dir/?api=1&amp;destination=-33.8292,18.79918" target="_blank" rel="noopener" class="btn btn--primary">Get directions</a>
+        </div>
+        <div class="find__mapcard" data-reveal>
+          <iframe class="find__map" src="https://www.google.com/maps?q=-33.8292,18.79918&amp;z=13&amp;output=embed" title="Map showing Giraffe House on the corner of the R304 and the R101, Muldersvlei" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
       </div>
-      <iframe class="find__map" src="https://www.google.com/maps?q=-33.8292,18.79918&amp;z=13&amp;output=embed" title="Map showing Giraffe House on the corner of the R304 and the R101, Muldersvlei" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <ul class="container find__facts" data-reveal>
+        <li><span class="ico" aria-hidden="true">📅</span><span><strong>Pre-bookings apply.</strong> Walk-ins are allowed, but pre-bookings take preference.</span></li>
+        <li><span class="ico" aria-hidden="true">👥</span><span><strong>Limited slots available.</strong></span></li>
+        <li><span class="ico" aria-hidden="true">🌦</span><span><strong>Weather and animal dependent.</strong></span></li>
+      </ul>
     </section>
 
   </main>
