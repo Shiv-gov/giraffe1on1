@@ -1,130 +1,23 @@
 /* ==========================================================================
-   GIRAFFE 1on1 SA - one-page microsite
-   Same design system as the main Giraffe House site: tokens, type, buttons,
-   form fields and motion are copied from it. Keep them in step.
-   Olive is the action colour. Neon is a graphic colour, never body text.
+   GIRAFFE 1on1 SA - this site's own pieces
+   css/giraffehouse.css is the main Giraffe House stylesheet, copied unchanged,
+   so the nav, buttons, section headings, cards, banner, contact layout, map and
+   footer all match the main site. Keep that file in step with the main site;
+   only the pieces the main site does not have live here.
    ========================================================================== */
 
 :root {
-  /* palette */
-  --cream:       #FBF8F1;
-  --cream-2:     #F4EDDD;
-  --sand:        #EADFC4;
-  --white:       #FFFFFF;
-  --accent:      #1EF60B;
-  --brown:       #7B4B22;
-  --olive:       #5F7F2F;
-  --olive-deep:  #3F5A1E;
-  --green-soft:  #E6EDD6;
-  --sky:         #63CDF6;
-  --sky-soft:    #DDF3FC;
-  --bark:        #2E1C10;
-  --bark-2:      #64503F;
-  --muted:       #98846F;
-  --black:       #0D0B0A;
-
-  /* type */
-  --font-display: 'Boogaloo', 'Arial Narrow', Impact, sans-serif;
-  --font-body:    'Nunito', 'Helvetica Neue', system-ui, sans-serif;
-  --font-script:  'Caveat', 'Bradley Hand', cursive;
-
-  /* layout */
-  --container: 1808px;
-  --gutter: clamp(20px, 6.2vw, 56px);   /* 56px from about 900px wide */
-  --nav-h: 84px;
-  --radius: 8px;
-  --ease-out: cubic-bezier(.22,.61,.36,1);
-
+  --gutter: clamp(20px, 5vw, 56px);
   /* The height of the giraffe box, measured from the photo. The rail, tongue and title all
      hang off this, so changing it keeps them lined up. */
   --g: min(70svh, 50vw);
   --rail-h: calc(var(--g) * .06545);
-
-  --print: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cg fill='%23D6BB86' stroke='%23D6BB86' stroke-width='12' stroke-linejoin='round'%3E%3Cpolygon points='14,20 58,10 82,42 60,78 24,70 8,44'/%3E%3Cpolygon points='102,12 150,6 172,36 158,72 112,66 94,40'/%3E%3Cpolygon points='192,16 232,24 234,64 208,84 186,58'/%3E%3Cpolygon points='22,98 66,94 84,128 62,166 26,158 8,128'/%3E%3Cpolygon points='106,88 148,92 168,124 150,162 110,158 92,124'/%3E%3Cpolygon points='192,102 232,106 234,150 210,174 186,148'/%3E%3Cpolygon points='12,186 54,180 76,210 58,234 18,230 4,208'/%3E%3Cpolygon points='102,186 150,180 172,206 154,234 106,232 90,210'/%3E%3Cpolygon points='196,192 232,196 234,232 198,232 186,216'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 /* --------------------------------------------------------------------------
-   Base
+   Nav and footer: the logo is a detailed mark on white, so it sits on a badge.
+   Large and hanging at the top of the desktop page, inside the bar once it is solid.
    -------------------------------------------------------------------------- */
-*, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
-body {
-  margin: 0;
-  font-family: var(--font-body);
-  font-size: 1.0625rem;
-  line-height: 1.6;
-  color: var(--bark);
-  background: var(--cream);
-  -webkit-font-smoothing: antialiased;
-  overflow-x: clip;
-}
-img { display: block; max-width: 100%; height: auto; }
-a { color: inherit; text-decoration: none; }
-ul { list-style: none; margin: 0; padding: 0; }
-h1, h2, h3, h4, p, fieldset, legend { margin: 0; padding: 0; }
-fieldset { border: 0; min-width: 0; }
-button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
-/* The hidden attribute always wins, whatever display a class sets */
-[hidden] { display: none !important; }
-
-.container { width: min(100% - 2 * var(--gutter), var(--container)); margin-inline: auto; }
-.section { padding-block: clamp(64px, 8vw, 110px); }
-
-.h-xl {
-  font-family: var(--font-display);
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: .01em;
-  line-height: .95;
-  font-size: clamp(2.4rem, 5vw, 4.4rem);
-  color: var(--brown);
-  text-wrap: balance;
-}
-.lead { font-size: clamp(1.05rem, 1.35vw, 1.24rem); line-height: 1.6; color: var(--bark-2); max-width: 56ch; }
-.shead { margin-bottom: clamp(32px, 4vw, 56px); }
-
-/* --------------------------------------------------------------------------
-   Buttons
-   -------------------------------------------------------------------------- */
-.btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-  padding: 16px 30px;
-  border-radius: var(--radius);
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: 1.2rem;
-  letter-spacing: .05em;
-  text-transform: uppercase;
-  line-height: 1;
-  border: 2px solid transparent;
-  transition: translate .3s var(--ease-out), background-color .25s, color .25s, border-color .25s, box-shadow .3s;
-}
-.btn:hover { translate: 0 -2px; }
-.btn:active { translate: 0 0; }
-.btn:focus-visible, a:focus-visible, button:focus-visible { outline: 3px solid var(--olive); outline-offset: 3px; }
-.btn--sm { padding: 12px 20px; font-size: 1.02rem; }
-.btn--lg { padding: 19px 38px; font-size: 1.32rem; }
-.btn--primary { background: var(--olive); color: #fff; border-color: var(--olive); }
-.btn--primary:hover { background: var(--olive-deep); border-color: var(--olive-deep); box-shadow: 0 16px 34px -14px rgba(95,127,47,.85); }
-
-/* --------------------------------------------------------------------------
-   Nav: the logo and one button, nothing else
-   -------------------------------------------------------------------------- */
-.nav {
-  position: sticky; top: 0; z-index: 50;
-  height: var(--nav-h);
-  margin-bottom: calc(-1 * var(--nav-h));
-  transition: background-color .35s, box-shadow .35s, height .35s;
-}
-.nav__inner {
-  width: min(100% - 2 * var(--gutter), var(--container));
-  margin-inline: auto;
-  height: 100%;
-  display: flex; align-items: center; justify-content: space-between; gap: 24px;
-}
-/* The logo is a detailed mark on white, so it sits on a white badge. At the top of
-   the desktop page it hangs below the clear bar at a readable size. Once the bar is
-   solid, and always below 900px, it sits fully inside the bar. */
 .nav__logo {
   align-self: flex-start;
   display: block;
@@ -136,19 +29,19 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   box-shadow: 0 10px 28px -12px rgba(28,16,8,.55);
   transition: width .35s var(--ease-out), margin-top .35s var(--ease-out), padding .35s;
 }
-.nav__logo img { width: 100%; height: auto; }
-.nav.is-scrolled {
-  background: rgba(251,248,241,.96);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 1px 0 rgba(46,28,16,.08), 0 10px 30px -22px rgba(46,28,16,.4);
-}
+.nav__logo img { width: 100%; height: auto; filter: none; }
 .nav.is-scrolled .nav__logo { width: 66px; margin-top: 6px; padding: 3px; box-shadow: none; }
+@media (max-width: 899px) {
+  .nav__logo { width: 66px; margin-top: 6px; padding: 3px; }
+}
+.footer__logo--badge { display: inline-block; width: 110px; padding: 6px; background: var(--white); border-radius: var(--radius); }
+.footer__logo--badge img { width: 100%; height: auto; }
+
 
 /* --------------------------------------------------------------------------
    Hero: sky, fence rail and ground, with the giraffe leaning over the rail
    -------------------------------------------------------------------------- */
-.hero {
+.ghero {
   position: relative;
   z-index: 2;   /* the tongue hangs over the next section */
   min-height: 100vh;
@@ -157,21 +50,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   grid-template-columns: minmax(0, 1fr);
   grid-template-rows: minmax(0, 1fr) 0 auto auto;
   color: var(--bark);
-  background: var(--sky);
+  background: var(--cream-2);
   isolation: isolate;
 }
-/* Giraffe print across the sky, in white */
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: #fff;
-  opacity: .1;
-  -webkit-mask: var(--print) 0 0 / 250px;
-  mask: var(--print) 0 0 / 250px;
-}
-.hero__words {
+.ghero__words {
   position: relative;
   z-index: 1;
   align-self: end;
@@ -181,7 +63,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   padding-bottom: clamp(18px, 3.4svh, 40px);
 }
 /* Typed in capitals, not transformed, so "1on1" keeps its lower case */
-.hero__kicker {
+.ghero__kicker {
   display: inline-block;
   max-width: 100%;
   margin-bottom: 14px;
@@ -192,7 +74,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   font-weight: 800; font-size: .8rem; letter-spacing: .2em;
 }
 /* Sized to the room beside the giraffe: the sticker line is about 8.3em wide */
-.hero__title {
+.ghero__title {
   font-family: var(--font-display);
   font-weight: 400;
   text-transform: uppercase;
@@ -200,11 +82,11 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   letter-spacing: .01em;
   font-size: min(12.6svh, (100vw - var(--g) * .759 - 120px) / 8.3);
 }
-.hero__line { display: block; overflow: hidden; padding-top: .03em; }
-.hero__line-in { display: block; }
+.ghero__line { display: block; overflow: hidden; padding-top: .03em; }
+.ghero__line-in { display: block; }
 /* The last line is a sticker. Its line is padded so the tilt is not clipped. */
-.hero__line:last-child { padding-block: .16em .18em; margin-block: -.06em -.18em; }
-.hero__title em {
+.ghero__line:last-child { padding-block: .16em .18em; margin-block: -.06em -.18em; }
+.ghero__title em {
   display: inline-block;
   padding: .05em .2em .02em;
   border-radius: var(--radius);
@@ -216,9 +98,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 /* The giraffe is layered so it really leans over the fence: head and chest behind the
    rail, muzzle and tongue in front. Both .giraffe boxes sit in the same place. */
-.hero__stage { display: none; }
-.hero__fence { position: relative; grid-row: 3; height: var(--rail-h); }
-.hero__rail {
+.ghero__stage { display: none; }
+.ghero__fence { position: relative; grid-row: 3; height: var(--rail-h); }
+.ghero__rail {
   position: absolute;
   inset: 0;
   z-index: 3;
@@ -253,14 +135,14 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   transform-origin: 50% 5%;
 }
 
-.hero__ground {
+.ghero__ground {
   grid-row: 4;
   display: flex;
   align-items: center;
   min-height: calc(var(--g) * .37);
-  background: var(--accent);
+  background: var(--green-soft);
 }
-.hero__action {
+.ghero__action {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -270,7 +152,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   margin-left: max(var(--gutter), (100% - var(--container)) / 2);
   padding-block: 22px;
 }
-.hero__sub {
+.ghero__sub {
   flex: 1 1 340px;
   max-width: 46ch;
   font-size: clamp(1.05rem, 1.3vw, 1.22rem);
@@ -282,15 +164,15 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
    giraffe is mirrored so the tongue hangs at the right, clear of the words. */
 @media (max-width: 899px), (max-aspect-ratio: 5/4) {
   :root { --g: min(42svh, 84vw); }
-  .hero { grid-template-rows: auto minmax(calc(var(--g) * .9), 1fr) auto auto; }
-  .hero__words { align-self: start; padding-top: 94px; padding-bottom: 0; }
-  .hero__title { font-size: clamp(2.3rem, 12.4vw, 5.6rem); }
-  .hero__title em { font-size: .82em; white-space: nowrap; }
-  .hero__stage { display: block; grid-row: 2; }
+  .ghero { grid-template-rows: auto minmax(calc(var(--g) * .9), 1fr) auto auto; }
+  .ghero__words { align-self: start; padding-top: 94px; padding-bottom: 0; }
+  .ghero__title { font-size: clamp(2.3rem, 12.4vw, 5.6rem); }
+  .ghero__title em { font-size: .82em; white-space: nowrap; }
+  .ghero__stage { display: block; grid-row: 2; }
   .giraffe { right: 0; }
   .giraffe__in { transform: scaleX(-1); }
-  .hero__ground { align-items: flex-start; min-height: calc(var(--g) * .44); }
-  .hero__action {
+  .ghero__ground { align-items: flex-start; min-height: calc(var(--g) * .44); }
+  .ghero__action {
     display: block;
     width: auto;
     max-width: none;
@@ -298,97 +180,28 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
     padding-block: 20px 26px;
   }
   /* Keeps the words clear of the tongue */
-  .hero__sub { width: calc(100% - var(--g) * .23); margin-bottom: 18px; }
+  .ghero__sub { width: calc(100% - var(--g) * .23); margin-bottom: 18px; }
 }
 @media (min-width: 900px) and (max-aspect-ratio: 5/4) {
   :root { --g: min(50svh, 70vw); }
   .giraffe { right: var(--gutter); }
 }
 
-/* --------------------------------------------------------------------------
-   Packages and durations
-   -------------------------------------------------------------------------- */
-.packages { background: var(--sky-soft); }
-.packages__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 80px); align-items: start; }
-.note { margin-top: clamp(24px, 3vw, 36px); padding: 26px 28px; border-radius: var(--radius); background: var(--olive-deep); }
-.note h3 {
-  margin-bottom: 8px;
-  font-family: var(--font-display); font-weight: 400; text-transform: uppercase;
-  font-size: 1.28rem; letter-spacing: .03em; color: var(--accent);
-}
-.note p { font-size: .98rem; color: rgba(255,255,255,.9); }
-.durations { background: var(--white); border-radius: var(--radius); padding: 8px clamp(20px, 2.4vw, 32px); box-shadow: 0 20px 42px -32px rgba(46,28,16,.4); }
-.durations li {
-  display: flex; justify-content: space-between; align-items: baseline; gap: 20px;
-  padding: 16px 0;
-  border-bottom: 1px solid rgba(46,28,16,.1);
-}
-.durations li:last-child { border-bottom: 0; }
-.durations__name { font-weight: 800; color: var(--bark); }
-.durations__time { flex: none; font-weight: 800; color: var(--olive); }
 
 /* --------------------------------------------------------------------------
-   Purpose band: a neon colour block with the giraffe print
+   Packages: the durations list is the main site's contact card list, in two
+   columns on wide screens
    -------------------------------------------------------------------------- */
-.purpose { position: relative; padding-block: clamp(60px, 7vw, 96px); background: var(--accent); color: var(--bark); overflow: hidden; isolation: isolate; }
-.purpose::before { content: ''; position: absolute; inset: 0; z-index: -1; background-image: var(--print); background-size: 150px; opacity: .13; filter: brightness(0) invert(1); }
-.purpose__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 5vw, 80px); align-items: start; }
-.purpose .h-xl { color: var(--bark); }
-.purpose .h-xl em { font-style: normal; }
-.purpose .lead { color: var(--bark); font-weight: 700; }
+.durations dl { columns: 2 340px; column-gap: clamp(28px, 4vw, 64px); }
+.durations dl > div { break-inside: avoid; }
+.durations dl > div:last-child { border-bottom: 1px solid rgba(46,28,16,.09); }
+.durations dd { color: var(--olive); }
 
 /* --------------------------------------------------------------------------
-   Enquiry
+   Enquiry form: package picker and two small number fields side by side
    -------------------------------------------------------------------------- */
-.enquire { background: var(--green-soft); }
-.enquire__grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(32px, 5vw, 80px); align-items: start; }
-.enquire__intro { display: flex; flex-direction: column; gap: 18px; }
-.enquire__photo { margin-top: 10px; border-radius: var(--radius); overflow: hidden; }
-.enquire__photo img { width: 100%; aspect-ratio: 5 / 4; object-fit: cover; object-position: 50% 68%; }
-
-.formcard {
-  padding: clamp(26px, 3.4vw, 48px);
-  background: var(--white);
-  border-radius: var(--radius);
-  box-shadow: 0 1px 0 rgba(46,28,16,.05), 0 30px 64px -40px rgba(46,28,16,.5);
-}
-.formcard__title {
-  margin-bottom: 22px;
-  font-family: var(--font-display); font-weight: 400; text-transform: uppercase;
-  font-size: clamp(1.6rem, 2.3vw, 2.1rem); line-height: 1.02; color: var(--brown);
-}
-.form { display: grid; gap: 18px; }
-.form__row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
-/* min-width:0 stops iOS date inputs stretching their grid cell past the card */
-.field { display: flex; flex-direction: column; gap: 7px; min-width: 0; }
-.field > label, .field > legend {
-  font-size: .78rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--brown);
-}
-.field > legend { margin-bottom: 7px; }
-.field input:not([type="radio"]) {
-  width: 100%; min-width: 0; max-width: 100%;
-  padding: 14px 16px;
-  font: inherit;
-  color: var(--bark);
-  background: var(--white);
-  border: 2px solid rgba(46,28,16,.16);
-  border-radius: var(--radius);
-  transition: border-color .2s, box-shadow .2s;
-}
-.field input:not([type="radio"]):focus { outline: none; border-color: var(--olive); box-shadow: 0 0 0 4px rgba(95,127,47,.16); }
-/* iOS draws date inputs as a native control that ignores width and collapses when empty */
-.field input[type="date"] {
-  -webkit-appearance: none; appearance: none;
-  display: block;
-  min-height: calc(1.6em + 32px);
-  text-align: left;
-}
-.field input::-webkit-date-and-time-value { text-align: left; }
-.field.is-invalid input:not([type="radio"]) { border-color: #C0392B; }
-.field__error { display: none; font-size: .82rem; font-weight: 700; color: #C0392B; }
-.field.is-invalid .field__error { display: block; }
-.field--group .field__error { margin-top: 7px; }
-
+.field--group { border: 0; padding: 0; margin: 0; min-width: 0; }
+.field--group > legend { margin-bottom: 8px; font-size: .78rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--brown); }
 /* Package picker: one tap target per package */
 .pkgs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
 .pkg { position: relative; display: block; cursor: pointer; }
@@ -409,84 +222,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .pkg input:checked + span { border-color: var(--olive); background: var(--green-soft); box-shadow: inset 0 0 0 1px var(--olive); }
 .pkg input:focus-visible + span { outline: 3px solid var(--olive); outline-offset: 2px; }
 
-.form__status { display: none; padding: 18px 20px; border-radius: var(--radius); font-weight: 700; line-height: 1.5; }
-.form__status.is-ok { display: block; background: var(--green-soft); color: var(--olive-deep); }
-.form__status.is-err { display: block; background: #FBE7E4; color: #96281B; }
-.form .btn { width: 100%; }
-.form__note { font-size: .88rem; line-height: 1.5; color: var(--bark-2); }
-
-/* --------------------------------------------------------------------------
-   Location: a colour block beside the map
-   -------------------------------------------------------------------------- */
-.find { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); color: var(--bark); background: var(--sky); }
-.find__info { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: clamp(52px, 6vw, 88px) var(--gutter); }
-.find__title { font-family: var(--font-display); font-weight: 400; text-transform: uppercase; font-size: clamp(2.2rem, 4vw, 3.8rem); line-height: .98; letter-spacing: .01em; color: var(--bark); text-wrap: balance; }
-.find__addr { margin-block: 14px 26px; font-style: normal; font-size: clamp(1.1rem, 1.4vw, 1.28rem); line-height: 1.5; font-weight: 700; color: var(--bark); }
-.find__map { display: block; width: 100%; height: 100%; min-height: clamp(320px, 34vw, 480px); border: 0; }
-@media (max-width: 899px) {
-  .find { grid-template-columns: 1fr; }
-  .find__map { min-height: 320px; }
-}
-
-/* --------------------------------------------------------------------------
-   Footer
-   -------------------------------------------------------------------------- */
-.footer { position: relative; overflow: hidden; background: var(--black); color: var(--cream); }
-.footer__row {
-  display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 8px 32px;
-  padding-block: clamp(40px, 5vw, 64px) clamp(26px, 3vw, 36px);
-}
-.footer__name { font-family: var(--font-display); font-size: clamp(1.7rem, 2.6vw, 2.3rem); line-height: 1; letter-spacing: .02em; }
-.footer__line { font-family: var(--font-script); font-size: clamp(1.4rem, 2.2vw, 1.9rem); line-height: 1.15; color: var(--accent); }
-.footer__big {
-  margin-bottom: -.1em;
-  font-family: var(--font-display);
-  font-size: clamp(3rem, 13.5vw, 17rem);
-  line-height: .8;
-  letter-spacing: .01em;
-  color: rgba(251,248,241,.07);
-  white-space: nowrap;
-  text-align: center;
-  user-select: none; pointer-events: none;
-}
-
-/* --------------------------------------------------------------------------
-   Responsive
-   -------------------------------------------------------------------------- */
-@media (min-width: 900px) {
-  /* The intro and photo stay in view beside the longer form */
-  .enquire__intro { position: sticky; top: 100px; }
-}
-@media (max-width: 899px) {
-  .nav__logo { width: 66px; margin-top: 6px; padding: 3px; }
-  .packages__grid, .purpose__grid, .enquire__grid { grid-template-columns: 1fr; }
-  .purpose__grid { gap: 18px; }
-}
-@media (max-width: 600px) {
-  body { font-size: 1rem; }
-  .section { padding-block: 54px; }
-  .hero__kicker { margin-bottom: 12px; padding: 7px 12px; font-size: min(.75rem, 3.1vw); letter-spacing: .06em; white-space: nowrap; }
-  .hero__sub { font-size: 1rem; }
-  .hero .btn { width: 100%; }
-  .form__row { grid-template-columns: 1fr; }
-  .form__row--pair { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .pkgs { grid-template-columns: 1fr; }
-  .pkg > span { flex-direction: row; align-items: center; justify-content: space-between; gap: 12px; min-height: 54px; }
-  .pkg small { margin-top: 0; flex: none; }
-  .durations li { gap: 14px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
-}
-
-.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
 /* --------------------------------------------------------------------------
    Experiences: expanding photo panels
    -------------------------------------------------------------------------- */
-.trail { padding-block: clamp(64px, 8vw, 110px); background: var(--brown); }
-.trail .h-xl { color: #fff; }
 
 .panel {
   position: relative;
@@ -504,7 +243,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   background: linear-gradient(to top, rgba(20,24,10,.92) 0, rgba(20,24,10,.72) 32%, rgba(20,24,10,0) 62%);
   pointer-events: none;
 }
-.panel--camel {
+.panel--empty {
   background: repeating-linear-gradient(135deg, var(--olive-deep) 0 26px, #38511B 26px 52px);
 }
 .panel__slot {
@@ -567,9 +306,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
     transition: background-color .25s, opacity .25s;
   }
   .trail__arrow:hover { background: var(--olive-deep); }
-  .trail__arrow:focus-visible { outline-color: #fff; }
   .trail__arrow:disabled { opacity: .35; cursor: default; }
-  .trail__count { min-width: 64px; text-align: center; font-weight: 800; color: #fff; }
+  .trail__count { min-width: 64px; text-align: center; font-weight: 800; color: var(--bark); }
 }
 
 /* Desktop: one wide panel and three slim ones */
@@ -608,7 +346,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   }
   .panel:hover::after { opacity: .6; }
   .panel.is-open::after { opacity: 0; }
-  .panel--camel::after { background: rgba(20,24,10,.2); }
+  .panel--empty::after { background: rgba(20,24,10,.2); }
 
   .panel__tab {
     position: absolute;
@@ -685,149 +423,31 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .panel, .panel__img, .panel__body, .panel.is-open .panel__body, .panel::after, .panel__tab { transition: none; }
 }
 
-/* ==========================================================================
-   WARM PALETTE (client feedback, November 2026)
-   Giraffe-print cream and orange backgrounds, dark brown headings with an
-   orange swoosh, orange-edged cards, and brown and orange bands between
-   sections. Olive stays the action colour on every button.
-   ========================================================================== */
-:root {
-  --orange:      #F0912C;
-  --orange-soft: #F9D59A;
-  --brown-deep:  #3E220E;
-  --tan:         #FFF3DE;
-  --print-warm: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Crect width='240' height='240' fill='%23FFF3DE'/%3E%3Cg fill='%23F9D59A' stroke='%23F9D59A' stroke-width='14' stroke-linejoin='round'%3E%3Cpolygon points='14,20 58,10 82,42 60,78 24,70 8,44'/%3E%3Cpolygon points='102,12 150,6 172,36 158,72 112,66 94,40'/%3E%3Cpolygon points='192,16 232,24 234,64 208,84 186,58'/%3E%3Cpolygon points='22,98 66,94 84,128 62,166 26,158 8,128'/%3E%3Cpolygon points='106,88 148,92 168,124 150,162 110,158 92,124'/%3E%3Cpolygon points='192,102 232,106 234,150 210,174 186,148'/%3E%3Cpolygon points='12,186 54,180 76,210 58,234 18,230 4,208'/%3E%3Cpolygon points='102,186 150,180 172,206 154,234 106,232 90,210'/%3E%3Cpolygon points='196,192 232,196 234,232 198,232 186,216'/%3E%3C/g%3E%3C/svg%3E") 0 0 / 300px;
-  --swoosh: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 18' preserveAspectRatio='none'%3E%3Cpath d='M4 13 C 90 3, 220 2, 316 9' fill='none' stroke='%23F0912C' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E");
-}
 
-/* Monochrome animal icons in orange circles */
-.ico {
-  display: inline-flex; align-items: center; justify-content: center; gap: .08em;
-  flex: none;
-  min-width: 1.9em; height: 1.9em;
-  padding-inline: .35em;
-  border-radius: .95em;
-  background: var(--orange);
-  color: #fff;
-  font-family: 'Noto Emoji', sans-serif;
-  font-variant-emoji: text;
-  font-size: 1.3rem;
-  line-height: 1;
-}
-
-.h-xl, .trail .h-xl { color: var(--brown-deep); }
-.swoosh::after {
-  content: '';
-  display: block;
-  width: min(340px, 80%);
-  height: 14px;
-  margin-top: 12px;
-  background: var(--swoosh) no-repeat left center / 100% 100%;
-}
-
-/* Sections sit on the print, divided by an orange line over a brown band */
-.trail, .packages, .purpose, .enquire, .find { background: var(--print-warm); }
-.packages, .purpose, .enquire, .find {
-  position: relative;
-  border-top: 16px solid var(--brown-deep);
-  box-shadow: 0 -8px 0 var(--orange);
-}
-
-/* Hero */
-.hero { background: var(--print-warm); }
-.hero::before { content: none; }
-.hero__title { color: var(--brown-deep); }
-.hero__kicker { display: inline-flex; align-items: center; gap: 12px; box-shadow: 0 6px 18px -10px rgba(62,34,14,.45); }
-.hero__kicker-bar { width: 3px; align-self: stretch; border-radius: 2px; background: var(--olive); }
-.hero__ground { background: var(--orange); border-bottom: 18px solid var(--brown-deep); }
-.hero__sub { color: var(--brown-deep); }
-
-/* Experiences */
-.trail { padding-bottom: clamp(64px, 8vw, 110px); }
-.panel { border: 4px solid var(--orange); background: var(--orange); }
-.panel::before { background: linear-gradient(to top, rgba(62,34,14,.95) 0, rgba(62,34,14,.78) 30%, rgba(62,34,14,0) 60%); }
-.panel--camel { background: repeating-linear-gradient(135deg, #E9963F 0 26px, #DE8530 26px 52px); }
-@media (max-width: 899px) {
-  .trail__count { color: var(--brown-deep); }
-}
-@media (min-width: 900px) {
-  /* Closed panels stay bright, with the label on an orange fade at the foot */
-  .panel::after { background: linear-gradient(to top, rgba(176,82,18,.95) 0, rgba(214,112,32,.75) 20%, rgba(214,112,32,0) 42%); opacity: 1; }
-  .panel:hover::after { opacity: .85; }
-  .panel--camel::after { background: linear-gradient(to top, rgba(176,82,18,.9) 0, rgba(176,82,18,0) 50%); }
-  .panel__plus { display: none; }
-  .panel__label {
-    left: 8px; right: 8px; bottom: 22px;
-    translate: none; rotate: none; writing-mode: horizontal-tb;
-    display: flex; flex-direction: column; align-items: center; gap: 2px;
-    font-size: clamp(1.1rem, 1.55vw, 1.6rem);
-    line-height: 1.02;
-    text-align: center;
-    white-space: normal;
-  }
-  .panel__label .ico { margin-bottom: 8px; font-size: clamp(1.6rem, 2.4vw, 2.3rem); background: none; min-width: 0; height: auto; padding: 0; }
-  .panel:hover .panel__label .ico { transform: translateY(-3px); }
-  .panel__label .ico { transition: transform .3s var(--ease-out); }
-}
-
-/* Packages */
-.note { background: var(--brown-deep); border: 3px solid var(--accent); }
-.durations { background: #FFFBF3; border: 4px solid var(--orange); padding: 6px clamp(14px, 2vw, 26px); }
-.durations li { align-items: center; gap: 14px; padding: 12px 0; border-bottom-color: rgba(240,145,44,.35); }
-.durations__name { flex: 1; color: var(--brown-deep); }
-.durations__time { padding: 6px 14px; border-radius: var(--radius); background: var(--olive); color: #fff; font-size: .92rem; white-space: nowrap; }
-/* Phones: the time sits under the name, so long rows never push past the card */
 @media (max-width: 600px) {
-  .durations li { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 12px; row-gap: 6px; }
-  .durations li .ico { grid-row: span 2; align-self: center; }
-  .durations__time { justify-self: start; padding: 4px 10px; font-size: .85rem; }
+  .pkgs { grid-template-columns: 1fr; }
+  .pkg span { flex-direction: row; align-items: center; justify-content: space-between; gap: 12px; min-height: 54px; }
+  .pkg small { margin-top: 0; flex: none; }
+  .form__row--pair { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
-/* Purpose */
-.purpose { color: var(--brown-deep); }
-.purpose::before { content: none; }
-.purpose .h-xl { color: var(--brown-deep); }
-.purpose .lead { color: var(--brown-deep); padding-left: clamp(18px, 2.4vw, 32px); border-left: 4px solid var(--orange); }
-
-/* Enquiry */
-.enquire .lead { color: var(--brown-deep); }
-.enquire__photo { border: 4px solid var(--orange); }
-.formcard { background: #FFFBF3; border: 4px solid var(--orange); }
-.formcard__title { color: var(--brown-deep); }
-.field > label, .field > legend { color: var(--brown-deep); }
-.field input:not([type="radio"]) { border-color: rgba(240,145,44,.45); }
-.pkg > span { flex-direction: row; align-items: center; justify-content: flex-start; gap: 12px; border-color: rgba(240,145,44,.5); background: #fff; }
-.pkg .ico { font-size: 1.05rem; }
-@media (max-width: 600px) { .pkg__text { flex: 1; } }
-.pkg__text { display: flex; flex-direction: column; color: var(--brown-deep); }
-.pkg:hover > span { border-color: var(--orange); }
-.pkg input:checked + span { border-color: var(--olive); }
-
-/* Location: two orange-edged cards on the print, then the three notes */
-.find { display: block; padding-block: clamp(56px, 6vw, 88px); color: var(--brown-deep); }
-.find__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(16px, 2vw, 28px); }
-.find__info, .find__mapcard, .find__facts { border: 4px solid var(--orange); border-radius: var(--radius); }
-.find__info { padding: clamp(28px, 4vw, 56px); background: rgba(255,251,243,.88); }
-.find__title { color: var(--brown-deep); }
-.find__addr { color: var(--brown-deep); }
-.find__addr a { color: var(--olive-deep); text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
-.find__mapcard { overflow: hidden; background: #fff; }
-.find__map { height: 100%; }
-.find__facts {
-  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
-  margin-top: clamp(16px, 2vw, 28px);
-  padding: 0;
-  background: #FFFBF3;
-}
-.find__facts li { display: flex; align-items: center; gap: 14px; padding: 18px clamp(16px, 2vw, 28px); font-size: .98rem; line-height: 1.4; }
-.find__facts li + li { border-left: 2px solid rgba(240,145,44,.5); }
-.find__facts strong { color: var(--brown-deep); font-size: 1.05rem; }
-.find__facts .ico { background: var(--brown-deep); font-size: 1.35rem; }
-@media (max-width: 899px) {
-  .find__grid, .find__facts { grid-template-columns: 1fr; }
-  .find__facts li + li { border-left: 0; border-top: 2px solid rgba(240,145,44,.5); }
+@media (prefers-reduced-motion: reduce) {
+  .panel, .panel__img, .panel__body, .panel.is-open .panel__body, .panel::after, .panel__tab { transition: none; }
 }
 
-/* Footer */
-.footer { background: var(--brown-deep); border-bottom: 16px solid var(--orange); }
-.footer__big { color: rgba(255,243,222,.08); }
+/* The alert note is dark green, so its bold lead-ins go white */
+.note--alert b { color: #fff; }
+/* "1on1" keeps its lower case, so the footer wordmark is not transformed */
+.footer__big span { text-transform: none; }
+
+/* Phones: the hero label stays on one line and the button is full width */
+@media (max-width: 600px) {
+  .ghero__kicker { margin-bottom: 12px; padding: 7px 12px; font-size: min(.75rem, 3.1vw); letter-spacing: .06em; white-space: nowrap; }
+  .ghero__sub { font-size: 1rem; }
+  .ghero .btn { width: 100%; }
+}
+
+/* Enquiry rail: an experience photo above the contact card */
+.rail__photo { border-radius: var(--radius); overflow: hidden; }
+.rail__photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 40%; }
+@media (max-width: 899px) { .rail__photo img { aspect-ratio: 4 / 3; } }

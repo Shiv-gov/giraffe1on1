@@ -193,7 +193,7 @@
      and keeps swaying */
   const giraffe = $$('.giraffe');
   const tongue = $('.giraffe__tongue');
-  const heroWords = $('.hero__words');
+  const heroWords = $('.ghero__words');
 
   const swayTongue = () => gsap.fromTo(tongue, { rotation: -2.4 }, {
     rotation: 2.4, duration: 1.5, ease: 'sine.inOut', yoyo: true, repeat: -1
@@ -218,12 +218,12 @@
     }, { passive: true });
   };
 
-  $$('.hero__line').forEach(l => { l.innerHTML = `<span class="hero__line-in">${l.innerHTML}</span>`; });
+  $$('.ghero__line').forEach(l => { l.innerHTML = `<span class="ghero__line-in">${l.innerHTML}</span>`; });
   gsap.timeline({ onComplete: followPointer })
-    .from('.hero__kicker', { y: 18, opacity: 0, duration: .8 }, .3)
-    .from('.hero__line-in', { yPercent: 110, duration: 1.1, stagger: .12, ease: 'power4.out' }, .4)
-    .from('.hero__sub', { y: 18, opacity: 0, duration: .8 }, .8)
-    .from('.hero .btn', { y: 18, opacity: 0, duration: .7 }, .95)
+    .from('.ghero__kicker', { y: 18, opacity: 0, duration: .8 }, .3)
+    .from('.ghero__line-in', { yPercent: 110, duration: 1.1, stagger: .12, ease: 'power4.out' }, .4)
+    .from('.ghero__sub', { y: 18, opacity: 0, duration: .8 }, .8)
+    .from('.ghero .btn', { y: 18, opacity: 0, duration: .7 }, .95)
     .from(giraffe, { y: () => window.innerHeight * .55, duration: 1.05, ease: 'back.out(1.5)' }, .25)
     .from(tongue, { scaleY: 0, duration: .9, ease: 'elastic.out(1, .45)' }, 1.05)
     .add(swayTongue, 1.7);
