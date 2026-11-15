@@ -32,7 +32,7 @@
 
   /* ------------------------------------------------------------------
      Jump links. An Enquire now button with data-package also ticks that
-     package in the form.
+     package in the form, alongside any already picked.
      ------------------------------------------------------------------ */
   document.addEventListener('click', (e) => {
     const a = e.target.closest('a[href^="#"]');
@@ -40,8 +40,8 @@
     const href = a.getAttribute('href');
     e.preventDefault();
     if (a.dataset.package) {
-      const radio = $(`input[data-key="${a.dataset.package}"]`);
-      if (radio) { radio.checked = true; radio.dispatchEvent(new Event('change', { bubbles: true })); }
+      const pick = $(`input[data-key="${a.dataset.package}"]`);
+      if (pick) { pick.checked = true; pick.dispatchEvent(new Event('change', { bubbles: true })); }
     }
     const top = href === '#top' ? 0 : $(href).getBoundingClientRect().top + window.scrollY - nav.offsetHeight + 1;
     window.scrollTo({ top, behavior: reduced ? 'auto' : 'smooth' });
@@ -125,7 +125,7 @@
     const fail = (field, message, el) => { setError(field, message); if (!first) first = el; };
 
     if ($('input:checked', group)) setError(group, '');
-    else fail(group, 'Please choose a package', $('input', group));
+    else fail(group, 'Please choose at least one package', $('input', group));
 
     $$('.field:not([data-required-group])', form).forEach(field => {
       const input = $('input', field);

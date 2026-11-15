@@ -451,3 +451,14 @@
 .rail__photo { border-radius: var(--radius); overflow: hidden; }
 .rail__photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 40%; }
 @media (max-width: 899px) { .rail__photo img { aspect-ratio: 4 / 3; } }
+
+/* Several packages can be picked, so a ticked one shows a check mark */
+.pkg span { position: relative; padding-right: 40px; }
+.pkg input:checked + span::after {
+  content: '';
+  position: absolute; top: 50%; right: 12px;
+  width: 20px; height: 20px;
+  translate: 0 -50%;
+  border-radius: 50%;
+  background: var(--olive) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center / 13px no-repeat;
+}

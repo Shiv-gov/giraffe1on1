@@ -15,7 +15,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Nunito:wght@400;600;700;800;900&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
   <!-- The main Giraffe House stylesheet, copied as is, then this site's own pieces on top -->
   <link rel="stylesheet" href="css/giraffehouse.css?v=1">
-  <link rel="stylesheet" href="css/styles.css?v=33">
+  <link rel="stylesheet" href="css/styles.css?v=34">
 </head>
 <body>
 
@@ -209,15 +209,15 @@
           <div class="formcard" data-reveal>
             <form class="form" id="enquiryForm" novalidate>
               <fieldset class="field field--group" data-required-group>
-                <legend>Choose a package</legend>
+                <legend>Choose one or more packages</legend>
                 <div class="pkgs">
-                  <label class="pkg"><input type="radio" name="package" value="Mini Giraffe (30 min)" data-key="mini-giraffe"><span>Mini Giraffe <small>30 min</small></span></label>
-                  <label class="pkg"><input type="radio" name="package" value="2 Giraffe (45 min)" data-key="two-giraffe"><span>2 Giraffe <small>45 min</small></span></label>
-                  <label class="pkg"><input type="radio" name="package" value="2 Giraffe &amp; Owl (1 hr)" data-key="two-giraffe-owl"><span>2 Giraffe &amp; Owl <small>1 hr</small></span></label>
-                  <label class="pkg"><input type="radio" name="package" value="2 Giraffe, Owl &amp; Reptile (1 hr 15 min)" data-key="two-giraffe-owl-reptile"><span>2 Giraffe, Owl &amp; Reptile <small>1 hr 15 min</small></span></label>
-                  <label class="pkg"><input type="radio" name="package" value="Camel Mini Session (30 min)" data-key="camel-mini"><span>Camel Mini Session <small>30 min</small></span></label>
-                  <label class="pkg"><input type="radio" name="package" value="Owl (15 min)" data-key="owl"><span>Owl <small>15 min</small></span></label>
-                  <label class="pkg"><input type="radio" name="package" value="Reptile (15 min)" data-key="reptile"><span>Reptile <small>15 min</small></span></label>
+                  <label class="pkg"><input type="checkbox" name="packages" value="Mini Giraffe (30 min)" data-key="mini-giraffe"><span>Mini Giraffe <small>30 min</small></span></label>
+                  <label class="pkg"><input type="checkbox" name="packages" value="2 Giraffe (45 min)" data-key="two-giraffe"><span>2 Giraffe <small>45 min</small></span></label>
+                  <label class="pkg"><input type="checkbox" name="packages" value="2 Giraffe &amp; Owl (1 hr)" data-key="two-giraffe-owl"><span>2 Giraffe &amp; Owl <small>1 hr</small></span></label>
+                  <label class="pkg"><input type="checkbox" name="packages" value="2 Giraffe, Owl &amp; Reptile (1 hr 15 min)" data-key="two-giraffe-owl-reptile"><span>2 Giraffe, Owl &amp; Reptile <small>1 hr 15 min</small></span></label>
+                  <label class="pkg"><input type="checkbox" name="packages" value="Camel Mini Session (30 min)" data-key="camel-mini"><span>Camel Mini Session <small>30 min</small></span></label>
+                  <label class="pkg"><input type="checkbox" name="packages" value="Owl (15 min)" data-key="owl"><span>Owl <small>15 min</small></span></label>
+                  <label class="pkg"><input type="checkbox" name="packages" value="Reptile (15 min)" data-key="reptile"><span>Reptile <small>15 min</small></span></label>
                 </div>
                 <span class="field__error"></span>
               </fieldset>
@@ -378,6 +378,6 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
-  <script src="js/main.js?v=10"></script>
+  <script src="js/main.js?v=11"></script>
 </body>
 </html>
